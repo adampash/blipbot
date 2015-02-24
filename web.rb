@@ -26,5 +26,6 @@ post '/' do
     body: PostClient.format_body(post_json)
   )
   status 200
-  body ''
+  content_type :json
+  { url: post["data"]["permalink"] }.to_json
 end
