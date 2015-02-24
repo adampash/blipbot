@@ -25,7 +25,7 @@ class PostClient
     excerpt = data["parsedBody"]["plaintext"]
     blog_name = get_blog_name data
     link = "[<a href=\"#{data["permalink"]}\">#{blog_name}</a>]"
-    "#{excerpt} #{link}"
+    "<p>#{excerpt} #{link}</p>"
   end
 
   def self.get_blog_name(data)
