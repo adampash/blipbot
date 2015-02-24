@@ -22,9 +22,9 @@ class PostClient
 
   def self.format_body(json)
     data = json["data"]
-    excerpt = data["parsedBody"]["excerpt"]
+    excerpt = data["parsedBody"]["plaintext"]
     blog_name = get_blog_name data
-    link = "[<a href=\"#{data["permalink"]}\">#{blog_name}</a>"
+    link = "[<a href=\"#{data["permalink"]}\">#{blog_name}</a>]"
     "#{excerpt} #{link}"
   end
 
