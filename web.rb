@@ -9,7 +9,7 @@ client = Kinja::Client.new(
 )
 
 post '/:id' do
-  client.post(
+  post = client.post(
     headline: 'foo',
     body: 'bar'
   )
