@@ -24,7 +24,7 @@ class PostClient
     data = json["data"]
     excerpt = data["parsedBody"]["plaintext"]
     blog_name = get_blog_name data
-    link = "[<a href=\"#{data["permalink"]}\">#{blog_name}</a>]"
+    link = "[<a x-inset=\"1\" href=\"#{data["permalink"]}\">#{blog_name}</a>]"
     "<p>#{excerpt} #{link}</p>"
   end
 
