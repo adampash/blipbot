@@ -23,7 +23,8 @@ post '/' do
   post_json = PostClient.get_post_json(url)
   post = client.post(
     headline: '',
-    body: PostClient.format_body(post_json)
+    body: PostClient.format_body(post_json),
+    status: "PUBLISHED"
   )
   status 200
   content_type :json
