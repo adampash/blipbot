@@ -29,8 +29,15 @@ class PostClient
   end
 
   def self.shrink(text)
-    while text.length > 300
+    while text.length > 280
       text = text.split(' ')[0...-1].join(' ')
+    end
+    # require 'pry'; binding.pry
+    unless text[-1].match(/[\.!\?]/)
+      if text[-1].match(/::punct::/)
+        text = text[0...-1]
+      end
+      text += "..."
     end
     text
   end
