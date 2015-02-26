@@ -5,3 +5,9 @@ gem 'sinatra'
 gem 'kinja'
 gem 'puma'
 gem 'httparty'
+
+group :development do
+  gem 'rspec'
+  gem 'guard-rspec'
+  gem 'pry'
+end

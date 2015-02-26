@@ -25,7 +25,14 @@ class PostClient
     excerpt = data["parsedBody"]["plaintext"]
     blog_name = get_blog_name data
     link = "[<a x-inset=\"1\" href=\"#{data["permalink"]}\">#{blog_name}</a>]"
-    "<p>#{excerpt} #{link}</p>"
+    "<p>#{shrink excerpt} #{link}</p>"
+  end
+
+  def self.shrink(text)
+    while text.length > 300
+      text = text.split(' ')[0...-1].join(' ')
+    end
+    text
   end
 
   def self.get_blog_name(data)
