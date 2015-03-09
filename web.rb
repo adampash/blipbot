@@ -30,7 +30,7 @@ post '/' do
     status: "PUBLISHED"
   )
   response = { url: post["data"]["permalink"] }
-  SlackNotifier.notify "Please consider splicing if it makes sense for your site. All will benefit.\n\nOriginal: #{url}\nBlip: #{response[:url]}"
+  SlackNotifier.notify "Please consider splicing if it makes sense for your site. All will benefit.\n\nOriginal: #{url}\nBlip: #{response[:url]}", "#editlead"
   status 200
   content_type :json
   response.to_json
