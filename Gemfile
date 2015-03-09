@@ -5,6 +5,7 @@ gem 'sinatra'
 gem 'kinja'
 gem 'puma'
 gem 'httparty'
+gem 'slack-notifier'
 
 group :development do
   gem 'rspec'

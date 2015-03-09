@@ -1,7 +1,10 @@
 require 'sinatra'
 require 'kinja'
 require 'json'
+require 'slack-notifier'
+
 require_relative './lib/post_client'
+require_relative './lib/slack_notifier'
 
 client = Kinja::Client.new(
   user: ENV["KINJA_USER"],
@@ -26,7 +29,9 @@ post '/' do
     body: PostClient.format_body(post_json),
     status: "PUBLISHED"
   )
+  response = { url: post["data"]["permalink"] }
+  SlackNotifier.notify "Please consider splicing if it makes sense for your site. All will benefit.\n#{url}\n#{response[:url]}"
   status 200
   content_type :json
-  { url: post["data"]["permalink"] }.to_json
+  response.to_json
 end
