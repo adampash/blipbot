@@ -6,7 +6,7 @@ module SlackNotifier
     notifier = Slack::Notifier.new SLACK_WEBHOOK
 
     notifier.ping message,
-      icon_emoji: ":telescope:",
+      icon_emoji: ":chart_with_upwards_trend:",
       channel: channel,
       username: "SpikeBot"
   end
