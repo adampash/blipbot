@@ -32,14 +32,14 @@ class PostClient
     while text.length > 280
       text = text.split(' ')[0...-1].join(' ')
     end
-    # require 'pry'; binding.pry
-    unless text[-1].match(/[\.!\?]/)
+    unless text[-1].match(/[\.!\?'"]/)
       if text[-1].match(/::punct::/)
         text = text[0...-1]
       end
       text += "..."
     end
-    text
+    text.gsub!('"', "'")
+    "\"#{text}\""
   end
 
   def self.get_blog_name(data)
