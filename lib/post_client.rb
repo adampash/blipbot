@@ -28,6 +28,15 @@ class PostClient
     "<p>#{shrink excerpt} #{link}</p>"
   end
 
+  def self.body_with_headline(json)
+    data = json["data"]
+    headline = data["headline"]
+    img = data["sharingMainImage"]["src"]
+    blog_name = get_blog_name data
+    link = data["permalink"]
+    "#{img.nil? or img == "" ? "" : "<p><a href=\"#{link}\"><img src=\"#{img}\" /></a></p>"}<p><a href=\"#{link}\">#{headline}</a> [#{blog_name}]</p>"
+  end
+
   def self.shrink(text)
     while text.length > 280
       text = text.split(' ')[0...-1].join(' ')

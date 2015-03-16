@@ -27,4 +27,38 @@ describe PostClient do
     excerpt = PostClient.shrink(sentence)
     expect(excerpt).to eq expected
   end
+
+  it "makes a body with a headline" do
+    json = {
+      "data" => {
+        "headline" => "Foo",
+        "defaultBlogId" => 1,
+        "sharingMainImage" => { "src" => "http://example.com/image.png" },
+        "permalink" => "http://example.com/2312321",
+        "blogs" => [{"id" => 1, "displayName" => "io9"}]
+      }
+    }
+    sentence = 'And then he said, "Oh wow, that is interesting."'
+    expected = "\"And then he said, 'Oh wow, that is interesting.'\""
+    excerpt = PostClient.body_with_headline(json)
+    expect(excerpt).to eq "<p><a href=\"http://example.com/2312321\"><img src=\"http://example.com/image.png\" /></a></p><p><a href=\"http://example.com/2312321\">Foo</a> [io9]</p>"
+
+  end
+
+  it "doesn't include an image if there isn't one" do
+    json = {
+      "data" => {
+        "headline" => "Foo",
+        "defaultBlogId" => 1,
+        "sharingMainImage" => { "src" => "" },
+        "permalink" => "http://example.com/2312321",
+        "blogs" => [{"id" => 1, "displayName" => "io9"}]
+      }
+    }
+    sentence = 'And then he said, "Oh wow, that is interesting."'
+    expected = "\"And then he said, 'Oh wow, that is interesting.'\""
+    excerpt = PostClient.body_with_headline(json)
+    expect(excerpt).to eq "<p><a href=\"http://example.com/2312321\">Foo</a> [io9]</p>"
+
+  end
 end
