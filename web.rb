@@ -31,7 +31,11 @@ post '/' do
     status: "PUBLISHED"
   )
   puts post
-  response = { url: post["data"]["permalink"] }
+  if post["data"].nil?
+    response = { url: "Problem creating blip. Probabaly Kinja API issue." }
+  else
+    response = { url: post["data"]["permalink"] }
+  end
   SlackNotifier.notify "Please consider splicing if it makes sense for your site. All will benefit.\n\nOriginal: #{url}\nBlip: #{response[:url]}"
   status 200
   content_type :json
