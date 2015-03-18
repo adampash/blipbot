@@ -24,7 +24,7 @@ post '/' do
   puts params
   url = params[:url]
   post_json = PostClient.get_post_json(url)
-  post = client.post(
+  post = client.create_post(
     headline: '',
     body: PostClient.format_body(post_json),
     # body: PostClient.body_with_headline(post_json),
