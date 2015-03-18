@@ -30,6 +30,7 @@ post '/' do
     # body: PostClient.body_with_headline(post_json),
     status: "PUBLISHED"
   )
+  puts post
   response = { url: post["data"]["permalink"] }
   SlackNotifier.notify "Please consider splicing if it makes sense for your site. All will benefit.\n\nOriginal: #{url}\nBlip: #{response[:url]}"
   status 200
