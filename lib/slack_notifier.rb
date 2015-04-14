@@ -2,12 +2,12 @@ SLACK_TOKEN = ENV["SLACK_TOKEN"]
 SLACK_WEBHOOK = ENV["SLACK_WEBHOOK"]
 
 module SlackNotifier
-  def self.notify(message, channel="editlead")
+  def self.notify(message, channel="editlead", emoji=":chart_with_upwards_trend:", user="SpikeBot")
     notifier = Slack::Notifier.new SLACK_WEBHOOK, {"unfurl_links": false}
 
     notifier.ping message,
-      icon_emoji: ":chart_with_upwards_trend:",
+      icon_emoji: emoji,
       channel: channel,
-      username: "SpikeBot"
+      username: user
   end
 end

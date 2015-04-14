@@ -60,4 +60,9 @@ class PostClient
     blog_name
   end
 
+  def self.has_related_widget(post_json)
+    text = post_json["data"]["original"]
+    text.include?('gawker-labs.com/related-widget')
+  end
+
 end
