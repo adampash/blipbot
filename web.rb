@@ -37,7 +37,7 @@ post '/' do
   end
   SlackNotifier.notify "Please consider splicing if it makes sense for your site. All will benefit.\n\nOriginal: #{url}\nBlip: #{response[:url]}"
   unless PostClient.has_related_widget(post_json)
-    SlackNotifier.notify "Umm uh oh guys, that last spike might be missing a related widget. Are we gonna have a problem here?", "editlead", ":cop:", "CopBot"
+    SlackNotifier.notify "Umm slow down there, that last spike might be missing a related widget. Are we gonna have a problem here?", "editlead", ":cop:", "CopBot"
   end
   status 200
   content_type :json
