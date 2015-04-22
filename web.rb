@@ -39,7 +39,7 @@ post '/' do
   unless PostClient.has_related_widget(post_json)
     SlackNotifier.notify "Umm slow down there, that last spike is missing a related widget. Are we gonna have a problem here?", "editlead", ":cop:", "CopBot"
   end
-  unless PostClient.has_shutterstock(post_json)
+  if PostClient.has_shutterstock(post_json)
     SlackNotifier.notify "Hey there, how're you doing? I'm a little worried about the stock photos I'm seeing here. Are you sure that's the best photo for this post? Need to talk it out?", "editlead", ":camera:", "ShutterBot"
   end
   status 200
