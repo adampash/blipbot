@@ -65,4 +65,9 @@ class PostClient
     text.include?('gawker-labs.com/related-widget')
   end
 
+  def self.has_shutterstock(post_json)
+    text = post_json["data"]["original"]
+    !(text =~ /shutterstock/i).nil?
+  end
+
 end
