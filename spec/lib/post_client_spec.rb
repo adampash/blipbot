@@ -61,4 +61,20 @@ describe PostClient do
     expect(excerpt).to eq "<p><a href=\"http://example.com/2312321\">Foo</a> [io9]</p>"
 
   end
+
+  it "extracts the root domain of the post" do
+    json = {
+      "data" => {
+        "headline" => "Foo",
+        "defaultBlogId" => 1,
+        "sharingMainImage" => { "src" => "" },
+        "permalink" => "http://gawker.com/2312321",
+        "blogs" => [{"id" => 1, "displayName" => "io9"}]
+      }
+    }
+    expect(PostClient.get_channel(json)).to eq "gawker"
+    json["data"]["permalink"] = "http://dog.gawker.com/23412324"
+
+    expect(PostClient.get_channel(json)).to eq "gawker"
+  end
 end

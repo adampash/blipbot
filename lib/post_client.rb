@@ -70,4 +70,10 @@ class PostClient
     !(text =~ /shutterstock/i).nil?
   end
 
+  def self.get_channel(post_json)
+    permalink = post_json["data"]["permalink"]
+    regex = /https?:\/\/(\w*\.)?(\w*)\.com/
+    permalink.match(regex)[2]
+  end
+
 end
