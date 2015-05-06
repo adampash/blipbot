@@ -38,6 +38,7 @@ post '/' do
   SlackNotifier.notify "Please consider splicing if it makes sense for your site. All will benefit.\n\nOriginal: #{url}\nBlip: #{response[:url]}"
   unless PostClient.has_related_widget(post_json)
     channel = PostClient.get_channel(post_json)
+    channel = "labs-test"
     SlackNotifier.notify "Umm slow down there, that last spike is missing a related widget. Are we gonna have a problem here?", "editlead", ":cop:", "CopBot"
     puts "Sending CopBot to investigate #{channel}"
     SlackNotifier.notify "Whoa, slow down there. Your latest spiking post is missing a related widget. We can fix it here, or we can fix it downtown. Your call. #{url}", channel, ":cop:", "CopBot"
